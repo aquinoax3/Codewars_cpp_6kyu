@@ -20,19 +20,19 @@
 
 std::string encode(const std::string &str) {
   std::string word = str;
-  std::unordered_map<char, int> vowels = {
-    {'a', 1},
-    {'e', 2},
-    {'i', 3},
-    {'o', 4},
-    {'u', 5}
+  std::unordered_map<char, char> vowels = {
+    {'a', '1'},
+    {'e', '2'},
+    {'i', '3'},
+    {'o', '4'},
+    {'u', '5'}
   };
   
   std::string result = "";
   
   for (char el : word) {
     if (vowels.find(el) != vowels.end()) {
-      result += std::to_string(vowels[el]);
+      result += vowels[el];
     } else {
       result += el;
     }
@@ -41,6 +41,28 @@ std::string encode(const std::string &str) {
   return result;
 }
 
+std::string decode(const std::string &str) {
+  std::string word = str;
+  std::unordered_map<int, char> vowels = {
+    {'1', 'a'},
+    {'2', 'e'},
+    {'3', 'i'},
+    {'4', 'o'},
+    {'5', 'u'}
+  };
+  
+  std::string result = "";
+  
+  for (char el : word) {
+    if (vowels.find(el) != vowels.end()) {
+      result += vowels[el];
+    } else {
+      result += el;
+    }
+  }
+  
+  return result;
+}
 // std::string decode(const std::string &str) {
 //   return "";
 // }
