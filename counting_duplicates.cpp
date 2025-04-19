@@ -11,5 +11,29 @@
 // "ABBA" -> 2 # 'A' and 'B' each occur twice
 
 
+#include <string>
+#include <unordered_map>
+#include <iostream>
+#include <set>
 
+std::size_t duplicateCount(const std::string& in) {
+  std::unordered_map <char, int> dupes;
+  std::size_t count = 0;
+  
+  for (char el : in) {
+    if (dupes.find(std::tolower(el)) != dupes.end()) {
+      dupes[std::tolower(el)]++;
+    } else {
+       dupes[el]++;
+     }
+  }
+     
+  for (auto [key,val] : dupes) {
+    if (val > 1) {
+      count++;
+    }
+    std::cout << "key: " << key << " - " << "val: " << val << std::endl;
+  }
+    return count;
+}
 
