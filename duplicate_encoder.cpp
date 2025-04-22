@@ -17,22 +17,25 @@
 
 std::string duplicate_encoder(const std::string& word){
   std::unordered_map<char, int> dupes;
+  std::string newStr = "";
   std::string result = "";
   
-  for (char el : word) {
+  for (char el : word){
+    newStr += std::tolower(el);
+  }
+  
+  
+  for (char el : newStr) {
     dupes[el]++;
   }
   
-  for (auto [key,val] : dupes) {
-    std::cout << key << " " << val << std::endl;
-  }
   
-  for (char el : word) {
-    if (dupes[el] > 1) {
-      result += ')';
-    } else {
-      result += '(';
-    }
+  for (char el : newStr) {
+    if (dupes[el] == 1) {
+      result += "(";
+    } else if (dupes[el] > 1) {
+      result += ")";
+    } 
   }
   
   
