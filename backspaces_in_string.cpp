@@ -11,22 +11,17 @@
 
 
 std::string cleanString(const std::string &s) {
-  int backspaces = 0;
-  int letters = 0;
+  if (s.size() == 0) return "";
   
-  for (char el : s) {
-    if (isalpha(el)) {
-      letters++;
-    } else {
-      backspaces++;
+  std::string result = "";
+  
+  for (char ch : s) {
+    if (ch != '#') {
+     result.push_back(ch);
+    } else if (!result.empty()) {
+     result.pop_back();
     }
   }
   
-  if (backspaces > letters) {
-    return "";
-  }
-  
-  
-  
-  return "";
+  return result;
 }
