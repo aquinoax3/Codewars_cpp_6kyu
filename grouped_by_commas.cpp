@@ -14,12 +14,34 @@
 
 
 
-
 #include <string>
+#include <iostream>
 
 std::string group_by_commas(int n) {
   if (std::to_string(n).size() < 4) {
     return std::to_string(n);
   }
-  // <- here!
+  
+  std::string reverse = "";
+  std::string numToStr = std::to_string(n);
+  int count = 0;
+  
+  for (int i = numToStr.size() - 1; i >= 0; i--) {
+      reverse += numToStr[i];
+      count++;
+    if (count % 3 == 0) {
+      reverse += ",";
+    }
+  }
+  
+  if (reverse.back() == ',') {
+    reverse.pop_back();
+  }
+  
+  std::string result = "";
+  for (int i = reverse.size() - 1; i >= 0; i--) {
+    result += reverse[i];
+  }
+  
+  return result;
 }
